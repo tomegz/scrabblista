@@ -1,4 +1,5 @@
 class WordController < ApplicationController
+    validates_length_of params[:q], :maximum => 9
     require 'trie'
     $trie ||= Trie.read("word_trie")
     def home

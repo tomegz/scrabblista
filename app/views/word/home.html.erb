@@ -1,7 +1,7 @@
 <p>Welcome to my Scrabble app</p>
 <br>
 <%= form_tag("/search", method: "get") do %>
-  <%= label_tag(:q, "Search for:") %>
-  <%= text_field_tag(:q) %>
-  <%= submit_tag("Search") %>
+  <%= label_tag(:q, "My rack:") %>
+  <%= text_field_tag 'q', nil, maxlength: 9 %>
+  <%= submit_tag("Create words from my letters") %>
 <% end %>
