@@ -1,3 +1,4 @@
 <% @words.each do |word| %>
 <p><%= word %></p>
 <% end %>
+<p><%= @user_query %> </p>
