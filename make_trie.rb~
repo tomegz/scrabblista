@@ -1,0 +1,22 @@
+require 'trie'
+
+
+trie = Trie.new
+IO.readlines('slowa.txt').each { |word| trie.add(word.chomp) }
+5.times { puts "DONE" }
+trie.save("word_trie")
+puts "yay"
+#letters = ["ą","g","a","w","u", "k", "k", "i", "ę", "e", "ż", "y"]
+#kombinacja = (2..5).flat_map{ |n| letters.permutation(n).map(&:join) }.uniq
+#user_input = gets.chomp
+#kombinacja.each { |word| puts word if trie.has_key?(word) }
+#puts trie.has_key?("aa")
+#puts trie.has_key?("abażur")
+#puts trie.has_key?("kaka")
+#puts trie.has_key?("kek")
+
+
+
+
+
+
