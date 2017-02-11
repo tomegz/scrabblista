@@ -5,7 +5,7 @@ class WordController < ApplicationController
     end
 
     def search
-      letters = params[:q].chars.sort
+      letters = params[:q].gsub(/\s+/, "").chars.sort
       combination = (2..letters.length).flat_map{ |n| letters.permutation(n).map(&:join) }.uniq
       @words = []
       combination.each { |word| @words.push(word) if $trie.has_key?(word) }
