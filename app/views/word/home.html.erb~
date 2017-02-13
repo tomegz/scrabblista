@@ -2,6 +2,6 @@
 <br>
 <%= form_tag("/search", method: "get") do %>
   <%= label_tag(:q, "My rack:") %>
-  <%= text_field_tag 'q', nil, maxlength: 9 %>
+  <%= text_field_tag 'q', nil, maxlength: 20 %>
   <%= submit_tag("Create words from my letters") %>
 <% end %>
