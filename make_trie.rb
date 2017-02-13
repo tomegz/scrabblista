@@ -1,9 +1,10 @@
 require 'trie'
 trie = Trie.new
-IO.readlines('slowa.txt').each { |word| trie.add(word.chomp) }
-5.times { puts "DONE" }
+IO.readlines('slowa.txt').each do |word| 
+  w = word.chomp
+  trie.add(w.length.to_s + w.chars.sort.join + w) 
+end
 trie.save("word_trie")
-puts "yay"
 
 
 
