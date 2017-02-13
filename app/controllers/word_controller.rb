@@ -9,6 +9,12 @@ class WordController < ApplicationController
       keys = (2..letters.length).flat_map{ |n| letters.combination(n).map(&:join).map{|n| n = n.length.to_s + n.chars.sort.join } }.uniq
       @words = []
       keys.each { |key| @words.push($trie.children(key)) if $trie.has_children?(key) }
+      @words.flatten!.each{ |w| w = key_to_word(w) } # can cause bugs?
     end
-
+    
+    private
+    def key_to_word(key)
+      a = key.length
+      key.slice(a+1..a)
+    end
 end
