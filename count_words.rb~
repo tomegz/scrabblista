@@ -1,0 +1,7 @@
+result = []
+IO.readlines("slowa.txt").each do |line|
+  w = line.chomp
+  result.push(w.length.to_s + w) if w.length > 15
+end
+print result
+puts result.size

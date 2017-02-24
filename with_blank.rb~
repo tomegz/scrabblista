@@ -1,0 +1,27 @@
+require 'trie'
+def key_to_word(key)
+      a = key.length
+      key[a/2+1..a-1]
+end
+trie = Trie.read("word_trie")
+puts "loaded"
+all_letters = %w[a ą b c ć d e ę f g h i j k l ł m n ń o ó p r s ś t u w y z ź ż]
+letters = "abcdefghi?".gsub(/\s+/, "").chars.sort
+keys = (2..letters.length).flat_map{ |n| letters.combination(n).map(&:join).map{|n| n = n.length.to_s + n.chars.sort.join } }.uniq
+my_keys = keys
+my_keys = keys.map do |k| 
+  if k.include? "?"
+    my_keys.push(all_letters.map{ |l| k.gsub("?", l) })
+  end
+end
+my_keys = my_keys.flatten.compact.map { |word| word.chars.sort.join }.uniq
+my_keys.delete_if { |w| w.include? "?" }
+puts my_keys.size
+
+#words = []
+#my_keys.each { |key| words.push(trie.children(key)) if trie.has_children?(key) }
+#words.flatten!.map!{ |w| key_to_word(w) } unless words.empty?
+#print words
+#puts words.size
+
+

@@ -1,0 +1,22 @@
+require 'trie'
+letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o"]
+#letters = ["c", "g", "?"]
+trie = Trie.read("word_trie")
+puts "Trie loaded..."
+count = 0
+words = []
+32.times do
+(2..letters.size).each do |n| 
+  letters.combination(n) do |c|
+    w = c.join
+    #puts "Combination: #{w}"
+    count += 1 
+    key = w.length.to_s + w
+    #words.push(trie.children(key)) if trie.has_children?(key)
+  end
+end
+end
+puts count
+#words.flatten!
+#puts words
+#puts words.size

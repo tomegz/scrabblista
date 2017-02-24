@@ -1,0 +1,62 @@
+require 'trie'
+# load full word trie
+trie = Trie.read("full_word_trie")
+puts "TRIE LOADED"
+#methods
+def substract(arr1, arr2)
+  arr1 if arr2.empty?
+  str = arr1.sort.join
+  arr2.each { |l| str.sub!(l,"") }
+  str.chars
+end
+# variables
+letters = ["a","a","g","u","w"]
+uletters = letters.uniq
+children = []
+words = []
+# program
+uletters.each do |letter|
+  rack = substract(letters, [letter])
+  rack.each do |tile|
+    my_key = letter + tile
+    words.push(my_key) if trie.has_key? my_key
+    children.push(my_key) if trie.has_children? my_key
+  end
+end
+print children
+#
+children_two = []
+children.each do |prefix|
+  rack = substract(letters, prefix.chars)
+  rack.each do |tile|
+    my_key = prefix + tile
+    words.push(my_key) if trie.has_key? my_key
+    children_two.push(my_key) if trie.has_children? my_key
+  end
+end
+print children_two
+#
+children_three = []
+children_two.each do |prefix|
+  rack = substract(letters, prefix.chars)
+  rack.each do |tile|
+    my_key = prefix + tile
+    words.push(my_key) if trie.has_key? my_key
+    children_three.push(my_key) if trie.has_children? my_key
+  end
+end
+print children_three
+#
+children_four = []
+children_three.each do |prefix|
+  rack = substract(letters, prefix.chars)
+  rack.each do |tile|
+    my_key = prefix + tile
+    words.push(my_key) if trie.has_key? my_key
+    children_four.push(my_key) if trie.has_children? my_key
+  end
+end
+print children_four
+#
+puts words.uniq
+

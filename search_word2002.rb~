@@ -1,0 +1,25 @@
+require 'trie'
+$letters = ["a", "a", "g", "u", "w"]
+$trie = Trie.read("small_trie")
+
+def substract(arr1, arr2)
+  return if arr1.nil? || arr2.nil? 
+  arr2.each do |l| 
+    arr1.delete_at(arr1.find_index(l)) if arr1.include? l  
+  end
+  arr1
+end
+
+def search_word(node, rack, n)
+  current_node = node
+  current_rack = rack
+  current_letter = rack[n]
+  if $trie.has_children? current_letter
+  else
+    n += 1
+    return if n > $letters.size
+  end
+  
+end
+
+search_word($trie.root, $letters, 0)

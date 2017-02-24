@@ -1,6 +1,7 @@
 class WordController < ApplicationController
     require 'trie'
-    $trie ||= Trie.read("word_trie")
+    #$trie ||= Trie.read("word_trie")
+    $trie ||= Trie.read("alph_word_trie")
     $all_letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "w", "y", "z", "ó", "ą", "ć", "ę", "ł", "ń", "ś", "ź", "ż"]
 
     def home
@@ -19,9 +20,10 @@ class WordController < ApplicationController
       end.flatten.map{ |k| k.chars.sort.join }.uniq
       final_keys += keys_with_blanks
       @words = []
-      keys.each { |key| @words.push($trie.children(key)) if $trie.has_children?(key) }
-      final_keys.each { |key| @words.push($trie.children(key)) if $trie.has_children?(key) }
-      @words.flatten!.map!{ |w| key_to_word(w) } unless @words.empty?
+      #keys.each { |key| @words.push($trie.children(key)) if $trie.has_children?(key) }
+      #final_keys.each { |key| @words.push($trie.children(key)) if $trie.has_children?(key) }
+      #@words.flatten!.map!{ |w| key_to_word(w) } unless @words.empty?
+      @words.push($trie.get "aa")
     end
     
     # private methods

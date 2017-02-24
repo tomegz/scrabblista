@@ -1,0 +1,43 @@
+require 'trie'
+
+def key_to_word(key)
+      a = key.length
+      key[a/2+1..a-1]
+end
+
+def choose_letters(letters, key)
+  letters = letters.select{ |l| l <= key.chars.last }
+end
+
+all_letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "w", "y", "z", "ó", "ą", "ć", "ę", "ł", "ń", "ś", "ź", "ż"]
+letters = ["?", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "s", "ż"]
+#letters = ["c", "g", "?"]
+words = []
+trie = Trie.read("word_trie")
+puts "Trie loaded..."
+count = 0
+(2..letters.size).each do |n| 
+  letters.combination(n) do |c|
+    w = c.join
+    key = w.length.to_s + w
+    if key.include? "?"
+      key.gsub!("?","")
+      count += 1
+      words.push(trie.children(key)) if trie.has_children?(key)
+      current_set = choose_letters(all_letters, key)
+      choose_letters(all_letters, key).each do |l|
+        count += 1
+        blank = (l + key).chars.sort.join
+        words.push(trie.children(blank)) if trie.has_children?(blank)
+      end
+    else
+      count += 1
+      words.push(trie.children(key)) if trie.has_children?(key)
+    end
+  end
+end
+words.flatten!
+#print words
+puts count
+
+

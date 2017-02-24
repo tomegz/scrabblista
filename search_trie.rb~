@@ -1,0 +1,21 @@
+require 'trie'
+trie = Trie.read("word_trie_take_two")
+word = 'abcdefghijklmno'
+letters = word.chars
+combinations = letters.permutation(5).to_a.map(&:join).flatten.uniq
+ print combinations
+puts combinations.size
+# puts combinations.size
+node = trie.root
+puts "loaded"
+result = []
+
+  "augaw".chars.each do |char|
+    break unless node.walk!(char)
+    if node.terminal?
+      result.push(node.full_state)
+    end
+  end
+
+puts result
+

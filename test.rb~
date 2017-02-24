@@ -1,0 +1,13 @@
+require 'trie'
+trie = Trie.read("word_trie_take_two") 
+word = 'agawuabcdeertyu'
+letters = word.chars.sort
+node = trie.root
+combinations = (2..10).flat_map{ |n| letters.combination(n).map(&:join) }
+puts combinations.size
+  word.split('').each do |char|
+    break unless node.walk!(char)
+    if node.terminal?
+      puts "Found me a word: #{node.full_state}"
+    end
+  end

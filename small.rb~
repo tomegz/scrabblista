@@ -1,0 +1,30 @@
+require 'trie'
+$trie = Trie.read("small_trie")
+$letters = ["a", "a", "g", "u", "w"]
+$words = []
+def search (node, rack)
+  $words.push(node.full_state) if node.terminal? # nie ma slowa "" wiec ide dalej
+  return if rack.empty?
+  if $trie.has_children?(node.full_state + rack[0])
+    node = node.walk(rack[0])
+    puts "I'm at #{node.full_state} node"
+    rack.delete_at(0)
+    search(node, rack)
+  end    
+end
+
+search($trie.root, $letters)
+puts $words
+puts $trie.get("aa")
+#puts $words
+#rack.each_with_index do |l, i|
+#    if $trie.has_children?(node.full_state + l)
+#     node = node.walk(l)
+#     new_rack = 
+ # end
+
+
+
+
+
+

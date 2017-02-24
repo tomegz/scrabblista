@@ -1,0 +1,40 @@
+require 'trie'
+$trie = Trie.read("full_word_trie")
+puts "TRIE LOADED!"
+$letters = ["a", "a", "g", "u", "w"]
+$words = []
+def substract(arr1, arr2)
+  return if arr1.nil? || arr2.nil? 
+  arr2.each do |l| 
+    arr1.delete_at(arr1.find_index(l)) if arr1.include? l  
+  end
+  arr1
+end
+
+def search (node, rack)
+  $words.push(node.full_state) if node.terminal? # nie ma slowa "" wiec ide dalej
+  return if rack.empty?
+  rack.each do |l|
+    puts "im on letter #{l}"
+    if $trie.has_children?(node.full_state + l)
+      next_node = node.walk(l)
+      puts "now on node: #{node.full_state} "
+      new_rack = substract(rack, l.chars)
+      search(next_node, new_rack)
+    else
+      new_rack = substract(rack, l.chars)
+      "nie pasuje mi: #{l}"
+    end
+  end
+end
+
+search($trie.root, $letters)
+puts "Found words: #{$words}"
+#puts $words
+#rack.each_with_index do |l, i|
+#    if $trie.has_children?(node.full_state + l)
+#     node = node.walk(l)
+#     new_rack = 
+ # end
+
+

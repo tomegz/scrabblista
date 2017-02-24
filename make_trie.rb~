@@ -2,11 +2,17 @@ require 'trie'
 trie = Trie.new
 IO.readlines('slowa.txt').each do |word| 
   w = word.chomp
-  trie.add(w.chars.sort.join + w) 
+  trie.add(w)
+  #trie.add(w.length.to_s + w.chars.sort.join + w)
+  #if trie.get(key).nil?
+    #word_or_array = []
+  #else
+    #word_or_array = trie.get(key).push(w)
+  #end
+  #trie.add(key, word_or_array)
+  #w.length.times{ |n| trie.add(w.length.to_s + w.sub(/#{word[n-1]}/,"?").chars.sort.join + word) }
 end
-5.times { puts "DONE" }
-trie.save("word_trie_take_five")
-puts "yay"
+trie.save("word_trie_take_three")
 
 
 

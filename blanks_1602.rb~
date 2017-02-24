@@ -1,0 +1,23 @@
+require 'trie'
+trie = Trie.read("word_trie_1602")
+puts "Trie loaded"
+word = 'uwaga'
+rack = word.chars.sort
+def search_word(rack)
+  node = trie.root
+  rack.each do |char|
+  break unless node.walk!(char)
+    if node.terminal?
+      puts "Found me a word: #{node.full_state}"
+    end
+  end
+  #search_word(new_rack)
+end
+search_word(rack)
+  #rack.each do |char|
+   # break unless node.walk!(char)
+    #if node.terminal?
+     # puts "Found me a word: #{node.full_state}"
+   # end
+#  end
+

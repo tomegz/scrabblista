@@ -1,0 +1,31 @@
+require 'trie'
+$letters = ["a", "a", "g", "u", "w"]
+$trie = Trie.read("small_trie")
+$nodes = []
+$words = []
+def substract(arr1, arr2)
+  return if arr1.nil? || arr2.nil? 
+  arr2.each do |l| 
+    arr1.delete_at(arr1.find_index(l)) if arr1.include? l  
+  end
+  arr1
+end
+def search_word(node, rack)
+  puts "now on node#{node} #{node.full_state}"
+  puts "my nodes #{$nodes}"
+  current_rack = substract(rack,node.full_state.chars) # => %w[a g w u]
+  $nodes.push(node)                                     # => ["node "a""]
+  $words.push(node.full_state) if node.terminal?
+  puts "Words: #{$words}"
+  if current_rack[0].nil?
+    next_node = $nodes.last
+    current_rack = substract($letters, node.full_state.chars)
+  else
+    next_node = node.walk(current_rack[0])               #if rack.empty? then go to start and change starting letter  
+  end  
+  search_word(next_node, current_rack)
+end
+puts "lets walk with #{letters[0]}"
+node = $trie.root.walk(letters[0])
+search_word(node, letters)
+puts "Words: {words}"
