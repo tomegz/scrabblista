@@ -16,11 +16,13 @@ require 'benchmark'
 $counter = 0
 trie = Trie.read("full_word_trie") #my instance of Trie structure
 puts "Trie loaded."
-input = %w[a s d f g h l m n i a b c ?].sort
+#input = %w[a b c d e f g h i j k l m ? ?].sort
+inputs = [%w[? ?].sort, %w[a b c d e f g h i j k l].sort, %w[d g ż b l o i ń ź a p l].sort, %w[a b ż ź g ę f l j k p ?].sort, %w[a b c d e f g h i j k ?].sort, %w[a b c d e f g h i j ? ?].sort, %w[b c d g h j k l m n ? ?].sort, %w[a i o e z n r w s t c y].sort, %w[a b c d e f g h i j ? ?], %w[a i o e z n r w s t ? ?].sort ]
+#%w[a i o e z n r w s t c y k ? ?].sort - worst case
 alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "w", "y", "z", "ó", "ą", "ć", "ę", "ł", "ń", "ś", "ź", "ż"]
-output = []
-wildcards = input.select{ |c| c=="?" }.size #count number of wildcards from user input
-input = input.join.gsub("?","").chars if wildcards > 0 # LAST CHANGES
+#output = []
+#wildcards = input.select{ |c| c=="?" }.size #count number of wildcards from user input
+#input = input.join.gsub("?","").chars if wildcards > 0 # LAST CHANGES
 def take_away(tiles, tile)
   #tiles.reject{ |t| tile.include? t } # rejects duplicates - need to fix
   if tile.is_a? Array
@@ -62,11 +64,14 @@ def search_word(node, wildcards, alphabet, tiles, output)
  
   
 end
-
+inputs.each do |input|
+wildcards = input.select{ |c| c=="?" }.size
+input = input.join.gsub("?","").chars if wildcards > 0
+output = []
 #search_word(trie.root, wildcards, alphabet, input, output)
-2.times do 
-puts "im here"
 puts Benchmark.measure { search_word(trie.root, wildcards, alphabet, input, output) } #my trie, starting point, number of wildcards, user input, empty output
+puts "For input #{input} with #{wildcards} wildcards the output is:"
 puts output.uniq.size
-puts "Function calls: #{$counter}"
+#puts "Function calls: #{$counter}"
+#print output.first(200)
 end

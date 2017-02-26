@@ -16,8 +16,8 @@ require 'benchmark'
 $counter = 0
 trie = Trie.read("full_word_trie") #my instance of Trie structure
 puts "Trie loaded."
-#input = %w[a b c d e f g h i j k l m ? ?].sort
-inputs = [%w[a b c].sort, %w[? ?].sort, %w[a b c d e f g h i j k l m n o].sort, %w[d g ż b l o i ń ź a p l u r f].sort, %w[a b ż ź g ę f l j k p r t ś ?].sort, %w[a b c d e f g h i j k l m n ?].sort, %w[a b c d e f g h i j k l m ? ?].sort, %w[b c d g h j k l m n p r s ? ?].sort, %w[a i o e z n r w s t c y k].sort, %w[a i o e z n r w s t c y k ? ?].sort]
+input = %w[a b ?].sort
+#inputs = [%w[a b c].sort, %w[? ?].sort, %w[a b c d e f g h i j k l m n o].sort, %w[d g ż b l o i ń ź a p l u r f].sort, %w[a b ż ź g ę f l j k p r t ś ?].sort, %w[a b c d e f g h i j k l m n ?].sort, %w[a b c d e f g h i j k l m ? ?].sort, %w[b c d g h j k l m n p r s ? ?].sort, %w[a i o e z n r w s t c y k].sort, %w[a i o e z n r w s t c y k ? ?].sort]
 alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "w", "y", "z", "ó", "ą", "ć", "ę", "ł", "ń", "ś", "ź", "ż"]
 #output = []
 #wildcards = input.select{ |c| c=="?" }.size #count number of wildcards from user input
@@ -60,10 +60,9 @@ def search_word(node, wildcards, alphabet, tiles, output)
       end
     end
   end
- 
   
 end
-inputs.each do |input|
+#inputs.each do |input|
 wildcards = input.select{ |c| c=="?" }.size
 input = input.join.gsub("?","").chars if wildcards > 0
 output = []
@@ -73,4 +72,4 @@ puts "For input #{input} with #{wildcards} wildcards the output is:"
 puts output.uniq.size
 #puts "Function calls: #{$counter}"
 #print output.first(200)
-end
+#end
