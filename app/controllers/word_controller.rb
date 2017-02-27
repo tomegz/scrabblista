@@ -1,17 +1,21 @@
 class WordController < ApplicationController
     require 'trie'
-    @@trie = Trie.read("tries/full_word_trie")
-    @@alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "w", "y", "z", "ó", "ą", "ć", "ę", "ł", "ń", "ś", "ź", "ż"]
+    #@@trie = Trie.read("tries/full_word_trie")
+    #@@alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "r", "s", "t", "u", "w", "y", "z", "ó", "ą", "ć", "ę", "ł", "ń", "ś", "ź", "ż"]
 
     def home
+      @trie |= Trie.read("tries/full_word_trie") # possibly move up as @@
     end
 
     def search
-      @input = params[:q].gsub(/\s+/, "").chars.sort # needs validations
-      @wildcards = @input.select{ |c| c=="?" }.size
-      @input = @input.join.gsub("?","").chars if @wildcards > 0
-      @output = []
-      search_word(@@trie.root, @wildcards, @@alphabet, @input, @output)
+      #@input = params[:q].gsub(/\s+/, "").chars.sort # needs validations
+      #@wildcards = @input.select{ |c| c=="?" }.size
+      #@input = @input.join.gsub("?","").chars if @wildcards > 0
+      #@output = []
+      #search_word(@@trie.root, @wildcards, @@alphabet, @input, @output)
+      @tiles = Tile.new(params[:q])
+      @scrabble = Scrabble.new(@trie, @tiles)
+      @words = @scrabble.find_words
     end
     
     # private methods
