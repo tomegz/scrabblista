@@ -1,4 +1,4 @@
-<p>I found <%= @words.size %> words from letters: <%= @tiles.tiles.join(", ") %> </p>
+<p>I found <%= @words.size %> words from letters: <%= @rack.inputted.join(", ") %> </p>
 <% @words.each do |word| %>
 <p><%= link_to "#{word}", "http://sjp.pl/#{word}", target: "_blank" %></p>
 <% end %>
