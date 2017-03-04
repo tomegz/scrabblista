@@ -1,19 +1,34 @@
 require 'trie'
 trie = Trie.new
+change = {
+  "ó" => ")",
+  "ą" => ",",
+  "ć" => ".",
+  "ę" => ":",
+  "ł" => ";",
+  "ń" => "<",
+  "ś" => ">",
+  "ź" => "[",
+  "ż" => "]"
+}
 IO.readlines('slowa.txt').each do |word| 
   w = word.chomp
   puts "at najlepszy" if w == "najlepszy"
-  trie.add(w.force_encoding("utf-8"))
-  #trie.add(w.length.to_s + w.chars.sort.join + w)
-  #if trie.get(key).nil?
-    #word_or_array = []
-  #else
-    #word_or_array = trie.get(key).push(w)
-  #end
-  #trie.add(key, word_or_array)
-  #w.length.times{ |n| trie.add(w.length.to_s + w.sub(/#{word[n-1]}/,"?").chars.sort.join + word) }
+  change.each do |key, value|
+    w.gsub!(key, value)
+  end
+  trie.add(w)
 end
-trie.save("new_trie")
+trie.save("p_trie")
+    # ó - "\xC3\xB3" )
+    # ą - "\xC4\x85" ,
+    # ć - "\xC4\x87" .
+    # ę - "\xC4\x99" :
+    # ł - "\xC5\x82" ;
+    # ń - "\xC5\x84" <
+    # ś - "\xC5\x9B" >
+    # ź - "\xC5\xBA" [
+    # ż - "\xC5\xBC" ]
 
 
 

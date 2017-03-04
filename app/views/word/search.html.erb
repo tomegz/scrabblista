@@ -1,4 +1,14 @@
-<p>I found <%= @words.size %> words from letters: <%= @rack.inputted.join(", ") %> </p>
-<% @words.each do |word| %>
-<p><%= link_to "#{word}", "http://sjp.pl/#{word}", target: "_blank" %></p>
-<% end %>
+<div class="search-header">
+  <div class="container">
+    <p>Znaleziono <%= @words.size %> słow, które można ułożyć z liter: <%= @rack.inputted.join(", ") %> </p>
+  </div>
+</div>
+<div class="container">
+  <% @words.each do |word| %>
+    <div class="col-md-4">
+      <div class="word-pill">
+        <p><%= link_to "#{word}", "http://sjp.pl/#{word}", target: "_blank" %></p>
+      </div>
+    </div>
+  <% end %>
+</div>

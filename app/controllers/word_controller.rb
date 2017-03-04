@@ -1,7 +1,7 @@
 require 'trie'
 class WordController < ApplicationController
 
-    @@trie = Trie.read("tries/full_word_trie")
+    @@trie = Trie.read("tries/p_trie")
     
     def home
     end
@@ -14,7 +14,7 @@ class WordController < ApplicationController
     end
 
     private
-    def validate_input
+    def validate_input # TRY flash.now
       if params[:q].size < 2 || params[:q].scan(letters_and_blanks).any? || params[:q].count("?") > 2
         flash[:notice] = "Potrzebujesz co najmniej dwóch liter, aby ułożyć słowo." if params[:q].size < 2 
         flash[:notice] = "Używaj tylko liter, lub '?' dla blanków." if params[:q].scan(letters_and_blanks).any? 

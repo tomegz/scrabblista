@@ -2,7 +2,7 @@
 require 'trie'
 class Scrabble
 
-	include Alphabet # ALPHABET const - currently ASCII 8 BIT
+	include Alphabet # ALPHABET, P_LETTERS
 
 	def initialize(trie, rack)
 		@trie = trie
@@ -29,8 +29,15 @@ class Scrabble
       end
     end
 
+    def normalize(word)
+      P_LETTERS_MIRROR.each do |key, value| 
+        word.gsub!(key, value)
+      end
+      word
+    end
+
 	def search_word(node, wildcards, alphabet, tiles, output)
-      output.push(node.full_state) if node.terminal? 
+      output.push(normalize(node.full_state)) if node.terminal? 
       unless tiles.empty? && wildcards.zero?
         tiles.uniq.each do |tile|
           unless node.walk(tile).nil?
