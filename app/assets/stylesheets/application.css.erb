@@ -13,9 +13,10 @@
  *= require_tree .
  *= require_self
  *= require bootstrap.min
+ //= depend_on_asset "scrabble2.jpg"
  */
 body { 
-  background: url("scrabble2.jpg") no-repeat center center fixed; 
+  background: url('<%= asset_path("scrabble2.jpg") %> ') no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
