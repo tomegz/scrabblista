@@ -25,6 +25,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
   height: 100vh;
+  font-family: "Times New Roman", serif;
 }
 /*body:before {
   content: "";
@@ -45,33 +46,63 @@ body {
 	text-decoration: none;
 	color: #fff;
 }
+.logo h1 {
+  text-shadow: 4px 4px #000;
+}
 h1, h2 {
 	text-align: center;
 	color: #fff;
 }
  h1 {
- 	font-family: "Times New Roman", sans-serif;
  	font-weight: 700;
  	font-size: 70px;
  }
-
- .search-form-head {
- 	color: #fff;
- 	display: block;
- 	text-align: center;
+ .error-message {
+  font-size: 24px;
+  color: red;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-align: center;
  }
  .search-form-tab { 
  	display: block; 
+  margin-top: 40px;
+  margin-bottom: 40px;
+  height: 50px;
+  font-size: 30px;
+  letter-spacing: 7px;
  	width: 100%;
+  background-color: rgba(7,54,17,0.7);
+  border: 3px solid #000;
+  border-radius: 2px;
+  color: #CCC;
+  text-transform: uppercase;
+  text-align: center;
+
  }
  .search-form-btn { 
  	display: block; 
- 	width: 100%;
+ 	width: 50%;
+  margin: 0 auto 20px auto;
+  height: 50px;
+  font-size: 20px;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  color: #FFF;
+  background-color: rgba(7,54,17,0.7);
+  border: 3px solid #000;
+  border-radius: 5px;
+  text-align: center;
  }
-
+ .search-form-btn:hover {
+    background-color: rgb(7,54,17);
+    color: #ccc;
+ }
 .search-header {
 	text-align: center;
 	color: #fff;
+  font-size: 24px;
+  margin-bottom: 20px;
 }
 .word-pill {
 	cursor: pointer;
@@ -80,7 +111,7 @@ h1, h2 {
 	background-color: rgba(50,50,50, 0.5);
 	margin-bottom: 10px;
 	text-align: center;
-	padding-top: 3px;
+	padding-top: 10px;
 	text-transform: uppercase;
 }
 .word-pill:hover {

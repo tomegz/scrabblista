@@ -24,7 +24,7 @@ class WordController < ApplicationController
     end
 
     def letters_and_blanks
-      /[^a-pA-Pr-uR-U?wyzWYZóąćęłńśźż_]/
+      /[^a-pA-Pr-uR-U?wyzWYZóąćęłńśźż\s_]/
     end
     
 end
