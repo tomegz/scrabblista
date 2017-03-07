@@ -1,6 +1,6 @@
 <div class="search-header">
   <div class="container">
-    <p>Znaleziono <%= @words.size %> słow, które można ułożyć z liter: <%= @rack.inputted.join(", ") %> </p>
+    <p>Znaleziono <%= @words.size %> słow, które można ułożyć z liter: <%= @rack.input.chars.sort.join(", ") %> </p>
   </div>
 </div>
 <div class="container">
