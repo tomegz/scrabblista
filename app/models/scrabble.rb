@@ -15,8 +15,8 @@ class Scrabble
 
 	def find_words
 		search_word(@trie, @node, @wildcards, @alphabet, @tiles, @output)
-        @output.sort_by!(&:length).reverse!
-    end
+    @output.sort_by!{ |w| w.content.length }.reverse!
+  end
 
     private
 
@@ -30,20 +30,21 @@ class Scrabble
     end
 
     def normalize(word)
+      normalized = word
       P_LETTERS_MIRROR.each do |key, value| 
-        word.gsub!(key, value)
+        normalized = normalized.gsub(key, value)
       end
-      word
+      normalized
     end
 
 	def search_word(trie, node, wildcards, alphabet, tiles, output)
-      output.push(Word.new(normalize(node.full_state)), trie.get(node.full_state)) if node.terminal? 
+      output.push( Word.new( normalize(node.full_state), trie.get(node.full_state) ) ) if node.terminal? 
       unless tiles.empty? && wildcards.zero?
         tiles.uniq.each do |tile|
           unless node.walk(tile).nil?
             next_node = node.walk(tile)
             remaining_tiles = take_away(tiles, tile)
-            search_word(next_node, wildcards, alphabet, remaining_tiles, output) 
+            search_word(trie, next_node, wildcards, alphabet, remaining_tiles, output) 
           end
         end
       end
@@ -55,7 +56,7 @@ class Scrabble
             next_node = node.walk(tile)
             remaining_tiles = take_away(tiles, tile)
             remaining_wildcards = wildcards - 1
-            search_word(next_node, remaining_wildcards, alphabet, tiles, output) 
+            search_word(trie, next_node, remaining_wildcards, alphabet, tiles, output) 
           end
         end
       end
