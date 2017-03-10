@@ -14,7 +14,7 @@ class Scrabble
 	end
 
 	def find_words
-		search_word(@node, @wildcards, @alphabet, @tiles, @output)
+		search_word(@trie, @node, @wildcards, @alphabet, @tiles, @output)
         @output.sort_by!(&:length).reverse!
     end
 
@@ -36,8 +36,8 @@ class Scrabble
       word
     end
 
-	def search_word(node, wildcards, alphabet, tiles, output)
-      output.push(normalize(node.full_state)) if node.terminal? 
+	def search_word(trie, node, wildcards, alphabet, tiles, output)
+      output.push(Word.new(normalize(node.full_state)), trie.get(node.full_state)) if node.terminal? 
       unless tiles.empty? && wildcards.zero?
         tiles.uniq.each do |tile|
           unless node.walk(tile).nil?
