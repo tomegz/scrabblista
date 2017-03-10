@@ -1,7 +1,7 @@
 require 'trie'
 class WordController < ApplicationController
 
-    @@trie = Trie.read("tries/p_trie")
+    @@trie = Trie.read("tries/p_10_03_2017_trie")
     
     def home
     end

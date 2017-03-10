@@ -7,7 +7,7 @@
   <% @words.each do |word| %>
     <div class="col-md-4">
       <div class="word-pill">
-        <p><%= link_to "#{word}", "http://sjp.pl/#{word}", target: "_blank" %></p>
+        <p><%= link_to "#{word.content}  #{word.points}", "http://sjp.pl/#{word}", target: "_blank" %></p>
       </div>
     </div>
   <% end %>
