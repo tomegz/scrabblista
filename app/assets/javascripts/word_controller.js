@@ -12,13 +12,13 @@ function getWords(){
 
 function handleSorting(){
 	$('#points').on('click', function(event){
-		$(this).toggleClass("active");
+		$(this).addClass("active");
 		$('#length').removeClass("active");
 	    sortByPoints();
         event.preventDefault();
 	});
 	$('#length').on('click', function(event){
-		$(this).toggleClass("active");
+		$(this).addClass("active");
 		$('#points').removeClass("active");
         sortByLength();
         event.preventDefault();
