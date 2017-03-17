@@ -1,10 +1,11 @@
 <div class="search-header">
   <div class="container">
     <p>Znaleziono <%= @words.size %> słow, które można ułożyć z liter: <%= @rack.input.chars.sort.join(", ") %> </p>
-    <p>Sortuj słowa:
-    <%= link_to "Najdłuższe", "#", id: "length", class: "active" %>
-    <%= link_to "Najlepiej punktowane", "#", id: "points" %>
-    </p>
+    <div class="col-md-6 col-md-offset-3">
+      <p>Sortuj słowa:</p>
+      <%= link_to "Najdłuższe", "#", id: "length", class: "active" %>
+      <%= link_to "Najlepiej punktowane", "#", id: "points" %>
+    </div>
   </div>
 </div>
 <div class="sortable">

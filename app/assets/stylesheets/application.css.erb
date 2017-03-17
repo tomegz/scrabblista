@@ -16,8 +16,16 @@
  //= depend_on_asset "scrabble2.jpg"
  */
  html {
- 	min-height: 100%;
- }
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+*, *:before, *:after {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+  }
 body { 
   background: url('<%= asset_path("scrabble2.jpg") %> ') no-repeat center center fixed; 
   -webkit-background-size: cover;
@@ -147,6 +155,9 @@ h1, h2 {
 @media (max-width: 600px) {
    h1{
     font-size: 40px;
+  }
+  #points, #length {
+
   }
 }
   
