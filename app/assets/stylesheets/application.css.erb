@@ -95,9 +95,12 @@ h1, h2 {
   border-radius: 5px;
   text-align: center;
  }
- .search-form-btn:hover {
+ .search-form-btn:hover, #points:hover, #length:hover {
     background-color: rgb(7,54,17);
     color: #ccc;
+ }
+ .search-form-btn:focus, #points:focus, #length:focus{
+    outline: none;
  }
 .search-header {
 	text-align: center;
@@ -105,6 +108,21 @@ h1, h2 {
   font-size: 24px;
   margin-bottom: 20px;
 }
+#points, #length {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  border: 2px solid #000;
+  border-radius: 5px;
+  background-color: rgba(7,54,17,0.7);
+  padding: 5px 10px;
+  margin: 25px 0px;
+}
+.active{
+    background-color: rgb(7,54,17) !important;
+    border: 3px solid #000 !important;
+}
+.word-column {}
 .word-pill {
 	cursor: pointer;
 	border: 2px solid #000;

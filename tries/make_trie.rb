@@ -58,7 +58,6 @@ def calculate_points(word, points)
 end
 IO.readlines('slowa.txt').each do |word| 
   w = word.chomp
-  puts "at najlepszy" if w == "najlepszy"
   change.each do |key, value|
     w.gsub!(key, value)
   end

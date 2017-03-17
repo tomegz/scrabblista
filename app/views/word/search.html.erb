@@ -1,14 +1,21 @@
 <div class="search-header">
   <div class="container">
     <p>Znaleziono <%= @words.size %> słow, które można ułożyć z liter: <%= @rack.input.chars.sort.join(", ") %> </p>
+    <p>Sortuj słowa:
+    <%= link_to "Najlepiej punktowane", "#", id: "points" %>
+    <%= link_to "Najdłuższe", "#", id: "length" %>
+    </p>
   </div>
 </div>
-<div class="container">
-  <% @words.each do |word| %>
-    <div class="col-md-4">
-      <div class="word-pill">
-        <p><%= link_to "#{word.content}  (#{word.points})", "http://sjp.pl/#{word.content}", target: "_blank" %></p>
+<div class="sortable">
+  <div class="container">
+    <% @words.each do |word| %>
+      <div class="col-md-4 word-column">
+        <div class="word-pill">
+          <p><%= link_to "#{word.content} ", "http://sjp.pl/#{word.content}", target: "_blank", class: "content" %>
+          <%= link_to "(#{word.points})", "http://sjp.pl/#{word.content}", target: "_blank", class: "points" %></p>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
