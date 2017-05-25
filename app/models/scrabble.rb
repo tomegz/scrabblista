@@ -15,7 +15,7 @@ class Scrabble
 
 	def find_words
 		search_word(@trie, @node, @wildcards, @alphabet, @tiles, @output)
-    @output.uniq!.sort_by!{ |w| w.content.length }.reverse!
+    @output.sort_by!{ |w| w.content.length }.reverse!.uniq!
   end
 
     private
